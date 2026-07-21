@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Credibility Upgrade — Digital Presence Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12151C;
+    --ink-soft:#1E2027;
+    --paper:#F6F5F0;
+    --paper-card:#FFFFFF;
+    --paper-line:#DEDBD0;
+    --amber:#D9A441;
+    --amber-deep:#B9862B;
+    --teal:#3E6B63;
+    --plum:#5B3A52;
+    --muted:#6B6F76;
+    --muted-on-dark:#9CA0A8;
+    --serif:'Fraunces', serif;
+    --mono:'IBM Plex Mono', monospace;
+    --sans:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--sans);
+    background:var(--paper);
+    color:var(--ink-soft);
+    line-height:1.55;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,245,240,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--paper-line);
+  }
+  .nav-inner{
+    max-width:920px;margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{
+    font-family:var(--mono);font-size:13px;letter-spacing:0.08em;
+    text-transform:uppercase;color:var(--ink);font-weight:600;
+    text-decoration:none;
+  }
+  .nav-links{display:flex;gap:22px;align-items:center;}
+  .nav-links a{
+    font-size:14px;color:var(--ink-soft);text-decoration:none;font-weight:500;
+  }
+  .nav-cta{
+    background:var(--ink);color:var(--paper)!important;
+    padding:9px 16px;border-radius:3px;font-size:13px;font-weight:600;
+  }
+  @media(max-width:640px){ .nav-links a:not(.nav-cta){display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:76px 0 56px;}
+  .eyebrow{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--amber-deep);font-weight:600;
+    margin:0 0 18px;display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--amber-deep);display:inline-block;}
+  h1{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(34px,5.2vw,58px);
+    line-height:1.05;letter-spacing:-0.01em;
+    margin:0 0 22px;color:var(--ink);
+  }
+  h1 em{font-style:italic;color:var(--amber-deep);}
+  .sub{
+    font-size:18px;color:var(--muted);max-width:600px;margin:0 0 34px;
+  }
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 24px;border-radius:3px;font-weight:600;font-size:15px;
+    text-decoration:none;cursor:pointer;border:none;font-family:var(--sans);
+  }
+  .btn-primary{background:var(--ink);color:var(--paper);}
+  .btn-primary:hover{background:#000;}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--ink);}
+
+  /* search mock */
+  .search-mock{
+    margin-top:56px;border:1px solid var(--paper-line);border-radius:6px;
+    background:var(--paper-card);overflow:hidden;
+    box-shadow:0 20px 50px -25px rgba(18,21,28,0.35);
+  }
+  .search-bar{
+    display:flex;align-items:center;gap:10px;padding:12px 18px;
+    border-bottom:1px solid var(--paper-line);background:#FBFAF6;
+  }
+  .search-bar .dot{width:9px;height:9px;border-radius:50%;background:var(--paper-line);}
+  .search-bar span{font-family:var(--mono);font-size:12px;color:var(--muted);}
+  .search-split{display:grid;grid-template-columns:1fr 1fr;}
+  @media(max-width:640px){.search-split{grid-template-columns:1fr;}}
+  .search-col{padding:22px 22px 26px;}
+  .search-col + .search-col{border-left:1px solid var(--paper-line);}
+  @media(max-width:640px){.search-col + .search-col{border-left:none;border-top:1px solid var(--paper-line);}}
+  .tag{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.06em;
+    text-transform:uppercase;padding:3px 8px;border-radius:2px;display:inline-block;margin-bottom:12px;
+  }
+  .tag-before{background:#F1E4E1;color:#8B4A3F;}
+  .tag-after{background:#E6EFE9;color:var(--teal);}
+  .mock-line{height:9px;border-radius:2px;background:var(--paper-line);margin-bottom:8px;}
+  .mock-title{height:13px;width:70%;background:#C9C5B7;border-radius:2px;margin-bottom:10px;}
+  .mock-title.good{background:var(--teal);opacity:0.85;}
+  .mock-line.short{width:60%;}
+  .mock-line.good{background:#CFE0D8;}
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:64px 0;}
+  .section-head{max-width:640px;margin:0 0 40px;}
+  .section-head h2{
+    font-family:var(--serif);font-size:clamp(26px,3.4vw,36px);
+    font-weight:600;color:var(--ink);margin:0 0 14px;line-height:1.15;
+  }
+  .section-head p{color:var(--muted);font-size:16.5px;margin:0;}
+
+  /* ---------- PROBLEM ---------- */
+  .problem{background:var(--ink);color:var(--paper);}
+  .problem .eyebrow{color:var(--amber);}
+  .problem .eyebrow::before{background:var(--amber);}
+  .problem .section-head h2{color:var(--paper);}
+  .problem .section-head p{color:var(--muted-on-dark);}
+  .cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:640px){.cost-grid{grid-template-columns:1fr;}}
+  .cost-item{
+    border:1px solid #2A2E38;border-radius:5px;padding:18px 20px;
+    background:#171A22;
+  }
+  .cost-item .num{font-family:var(--mono);font-size:12px;color:var(--amber);display:block;margin-bottom:8px;}
+  .cost-item p{margin:0;font-size:15px;color:#D8D9DC;}
+  .cost-item b{color:var(--paper);}
+
+  /* ---------- VALUE LADDER ---------- */
+  .ladder-intro{text-align:center;max-width:680px;margin:0 auto 8px;}
+  .divider{
+    display:flex;align-items:center;gap:16px;margin:56px 0 40px;
+    font-family:var(--mono);font-size:13px;color:var(--muted);
+    text-transform:uppercase;letter-spacing:0.05em;
+  }
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--paper-line);}
+
+  .tier{
+    background:var(--paper-card);border:1px solid var(--paper-line);
+    border-radius:8px;overflow:hidden;
+    box-shadow:0 24px 60px -40px rgba(18,21,28,0.4);
+  }
+  .tier-head{
+    padding:30px 32px 26px;
+    border-bottom:1px solid var(--paper-line);
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;align-items:flex-end;
+  }
+  .tier-name{
+    font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 8px;
+  }
+  .tier-head h3{font-family:var(--serif);font-size:30px;font-weight:600;margin:0;color:var(--ink);}
+  .tier-price{text-align:right;}
+  .tier-price .amt{font-family:var(--serif);font-size:38px;font-weight:600;color:var(--ink);}
+  .tier-price .label{display:block;font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px;}
+  .tier-recommended .tier-head{background:#FBF3DF;}
+  .badge{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+    background:var(--amber);color:var(--ink);padding:4px 9px;border-radius:2px;
+    position:relative;top:-2px;
+  }
+  .tier-sub{padding:18px 32px 0;color:var(--muted);font-size:15px;max-width:560px;}
+  .includes-note{
+    margin:20px 32px 0;padding:12px 16px;background:#F3F1EA;border-left:3px solid var(--teal);
+    font-size:14px;color:var(--ink-soft);border-radius:0 3px 3px 0;
+  }
+  .includes-note b{color:var(--teal);}
+
+  .ledger{padding:10px 12px 8px;}
+  .ledger-item{
+    display:grid;grid-template-columns:34px 1fr;gap:14px;
+    padding:16px 20px;border-bottom:1px solid #EEEBE1;
+  }
+  .ledger-item:last-child{border-bottom:none;}
+  .ledger-num{font-family:var(--mono);font-size:13px;color:var(--paper-line);font-weight:600;padding-top:2px;}
+  .ledger-body-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline;}
+  .ledger-name{font-weight:700;font-size:15.5px;color:var(--ink);}
+  .impact-tag{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:0.05em;text-transform:uppercase;
+    padding:3px 8px;border-radius:2px;white-space:nowrap;
+  }
+  .impact-local{background:#E6EFE9;color:var(--teal);}
+  .impact-ai{background:#EFE4F0;color:var(--plum);}
+  .impact-search{background:#F1EAD9;color:var(--amber-deep);}
+  .impact-trust{background:#E9EEF2;color:#3E5C76;}
+  .impact-conv{background:#F1E4E1;color:#8B4A3F;}
+  .impact-doc{background:#ECEBE6;color:var(--muted);}
+  .ledger-why{margin:6px 0 0;font-size:14.5px;color:var(--muted);max-width:660px;}
+
+  .tier-foot{padding:26px 32px 32px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;}
+  .tier-foot .btn-primary{width:100%;justify-content:center;}
+  @media(min-width:560px){.tier-foot .btn-primary{width:auto;}}
+  .tier-foot .fine{font-size:13px;color:var(--muted);}
+
+  .tier-amber{border-top:4px solid var(--amber);}
+  .tier-teal{border-top:4px solid var(--teal);}
+  .tier-plum{border-top:4px solid var(--plum);}
+
+  /* ---------- COMPARE TABLE ---------- */
+  .compare{overflow-x:auto;border:1px solid var(--paper-line);border-radius:6px;background:var(--paper-card);}
+  table{width:100%;border-collapse:collapse;min-width:560px;}
+  th,td{padding:14px 18px;text-align:left;font-size:14.5px;border-bottom:1px solid #EEEBE1;}
+  th{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);background:#FBFAF6;}
+  td.check{color:var(--teal);font-weight:700;text-align:center;}
+  td.dash{color:var(--paper-line);text-align:center;}
+  tr:last-child td{border-bottom:none;}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--paper-line);padding:22px 0;}
+  .faq-item h4{font-size:16.5px;margin:0 0 8px;color:var(--ink);font-weight:700;}
+  .faq-item p{margin:0;color:var(--muted);font-size:15px;}
+
+  /* ---------- FINAL CTA ---------- */
+  .final{background:var(--ink);color:var(--paper);text-align:center;}
+  .final h2{font-family:var(--serif);font-size:clamp(28px,4vw,42px);margin:0 0 16px;font-weight:600;}
+  .final p{color:var(--muted-on-dark);max-width:520px;margin:0 auto 32px;font-size:17px;}
+  .final-tiers{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .final-tiers .btn{background:transparent;border:1px solid #383D48;color:var(--paper);}
+  .final-tiers .btn.rec{background:var(--amber);border-color:var(--amber);color:var(--ink);}
+
+  footer{padding:32px 0 48px;text-align:center;}
+  footer p{font-size:13px;color:var(--muted);}
+
+  [data-reveal]{opacity:0;transform:translateY(14px);transition:opacity 0.6s ease, transform 0.6s ease;}
+  [data-reveal].is-visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    [data-reveal]{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">[YOUR NAME] / DIGITAL PRESENCE AUDIT</a>
+    <div class="nav-links">
+      <a href="#problem">The Problem</a>
+      <a href="#tiers">Packages</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav-cta" href="#tiers">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <p class="eyebrow">Digital Presence Audit &amp; Optimization</p>
+  <h1>Google decides about your business <em>before</em> you get the chance to.</h1>
+  <p class="sub">Every referral, every ad, every conversation ends the same way: someone opens their phone and searches your name. This is the line-by-line audit and rebuild that makes sure what they find actually gets you the call.</p>
+  <div class="hero-actions">
+    <a href="#tiers" class="btn btn-primary">See the packages →</a>
+    <a href="#problem" class="btn btn-ghost">What's actually broken</a>
+  </div>
+
+  <div class="search-mock" data-reveal>
+    <div class="search-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span>searching: "[your business name]"</span></div>
+    <div class="search-split">
+      <div class="search-col">
+        <span class="tag tag-before">Before</span>
+        <div class="mock-title"></div>
+        <div class="mock-line"></div>
+        <div class="mock-line short"></div>
+        <div class="mock-line" style="margin-top:14px;width:40%;"></div>
+      </div>
+      <div class="search-col">
+        <span class="tag tag-after">After</span>
+        <div class="mock-title good"></div>
+        <div class="mock-line good"></div>
+        <div class="mock-line good short"></div>
+        <div class="mock-line good" style="margin-top:14px;width:50%;"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="problem" id="problem">
+  <div class="wrap">
+    <p class="eyebrow">The Real Cost</p>
+    <div class="section-head">
+      <h2>Nobody tells you when this is costing you a sale. It just quietly happens.</h2>
+      <p>You never find out about the lead who searched your name, hesitated, and picked the competitor whose profile just looked more finished. Here's what's actually happening every time that goes unfixed.</p>
+    </div>
+    <div class="cost-grid">
+      <div class="cost-item" data-reveal><span class="num">01</span><p><b>Lost trust.</b> An incomplete bio or inconsistent branding reads as unfinished, not busy. People assume unfinished means unreliable.</p></div>
+      <div class="cost-item" data-reveal><span class="num">02</span><p><b>Fewer inquiries.</b> A prospect who can't quickly confirm you're legitimate doesn't ask questions. They just move to the next result.</p></div>
+      <div class="cost-item" data-reveal><span class="num">03</span><p><b>Lower conversions.</b> Every extra second of doubt lowers the odds they message or call, and doubt compounds fast on a phone screen.</p></div>
+      <div class="cost-item" data-reveal><span class="num">04</span><p><b>Invisible in local search.</b> No optimized Google Business Profile means you don't exist for "near me" searches, regardless of how good you actually are.</p></div>
+      <div class="cost-item" data-reveal><span class="num">05</span><p><b>Invisible to AI search.</b> Google's AI Overviews, ChatGPT, and Perplexity now answer questions directly. If you're not structured for it, you're not in the answer.</p></div>
+      <div class="cost-item" data-reveal><span class="num">06</span><p><b>Missed opportunities.</b> Broken links and outdated info quietly remove you from searches you should already be winning.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="tiers">
+  <div class="wrap">
+    <div class="section-head ladder-intro" style="margin-left:auto;margin-right:auto;text-align:center;">
+      <p class="eyebrow" style="justify-content:center;">The Packages</p>
+      <h2>Three packages. Each one is the floor the next one stands on.</h2>
+      <p>Nothing below is filler. Every line item is here because of a specific, provable reason it affects whether someone finds you, trusts you, or picks you. Start wherever fits your business, but read what each one actually does before you decide.</p>
+    </div>
+
+    <!-- TIER 1 -->
+    <div class="tier tier-amber" data-reveal>
+      <div class="tier-head">
+        <div>
+          <p class="tier-name">Package One</p>
+          <h3>The Foundation Audit</h3>
+        </div>
+        <div class="tier-price">
+          <span class="amt">$100</span>
+          <span class="label">one-time</span>
+        </div>
+      </div>
+      <p class="tier-sub">The nine fixes that determine whether anyone who finds you takes you seriously. Most agencies charge premium prices before they've even done this much.</p>
+
+      <div class="ledger">
+        <div class="ledger-item">
+          <span class="ledger-num">01</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Bio Rewrite</span><span class="impact-tag impact-search">Search Match</span></div>
+            <p class="ledger-why">Platforms and search engines index your bio as your core keyword signal. Vague phrasing like "passionate entrepreneur" matches nothing anyone actually types into a search bar.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">02</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Full Profile Completion</span><span class="impact-tag impact-search">Ranking Signal</span></div>
+            <p class="ledger-why">Every major platform quietly rewards fully completed profiles with better internal placement. An unfinished profile is functionally invisible sitting next to a finished one.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">03</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Contact Information Audit</span><span class="impact-tag impact-conv">Conversion</span></div>
+            <p class="ledger-why">A missing or outdated phone number, email, or address is one of the most common reasons a warm lead goes cold before they ever message you.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">04</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Link Repair</span><span class="impact-tag impact-search">Ranking Signal</span></div>
+            <p class="ledger-why">Broken links are dead ends. Crawlers eventually stop following them, and real visitors never tell you they hit one, they just leave.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">05</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Username Consistency Review</span><span class="impact-tag impact-trust">Trust Signal</span></div>
+            <p class="ledger-why">Mismatched handles break the trail someone follows to confirm you're real. Consistency turns "let me check them out" into "yes, this is them everywhere."</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">06</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Profile Image Standards</span><span class="impact-tag impact-trust">First Impression</span></div>
+            <p class="ledger-why">Processed before a single word of your bio gets read, and several platforms weight image completeness in how prominently a profile gets surfaced.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">07</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Brand Consistency Pass</span><span class="impact-tag impact-trust">Trust Signal</span></div>
+            <p class="ledger-why">Matching tone and presentation across platforms compounds trust every time someone sees you again elsewhere. Inconsistency resets that trust to zero.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">08</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Call-To-Action Optimization</span><span class="impact-tag impact-conv">Conversion</span></div>
+            <p class="ledger-why">The single line that turns attention into action. Most profiles either bury it three lines down or never had one at all.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">09</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Written Before/After Audit Report</span><span class="impact-tag impact-doc">Documentation</span></div>
+            <p class="ledger-why">A record of exactly what changed, so the value of the work is visible and provable, not just a promise you have to take on faith.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-foot">
+        <a href="https://buy.stripe.com/REPLACE_WITH_TIER1_LINK" class="btn btn-primary">Get the Foundation Audit — $100</a>
+        <span class="fine">Delivered in 3–5 business days</span>
+      </div>
+    </div>
+
+    <div class="divider">still reading? here's what changes next</div>
+
+    <!-- TIER 2 -->
+    <div class="tier tier-teal tier-recommended" data-reveal>
+      <div class="tier-head">
+        <div>
+          <p class="tier-name">Package Two <span class="badge">Recommended</span></p>
+          <h3>The Growth System</h3>
+        </div>
+        <div class="tier-price">
+          <span class="amt">$250</span>
+          <span class="label">one-time</span>
+        </div>
+      </div>
+      <p class="tier-sub">This is where you stop being invisible. Everything in the Foundation Audit, plus the two moves that actually put you in front of new people searching for what you do.</p>
+      <div class="includes-note"><b>Includes everything in The Foundation Audit</b> — all nine fixes above, applied first, then built on with the following.</div>
+
+      <div class="ledger">
+        <div class="ledger-item">
+          <span class="ledger-num">10</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Google Business Profile Setup / Optimization</span><span class="impact-tag impact-local">Local Search</span></div>
+            <p class="ledger-why">The single highest-leverage move available to a local business. It's what puts you inside Google's map pack and "near me" results, arguably the most valuable real estate in search, and most businesses never fully claim it.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">11</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">AI Search &amp; Assistant Optimization</span><span class="impact-tag impact-ai">AI Search</span></div>
+            <p class="ledger-why">Google's AI Overviews, ChatGPT, and Perplexity now answer people's questions directly, summarizing businesses before anyone clicks a link. This positions you to be the business the AI actually names, not just one of ten blue links underneath it.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">12</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">SEO Keyword Layering Across Profiles</span><span class="impact-tag impact-search">Search Match</span></div>
+            <p class="ledger-why">Strategic keyword placement across every public-facing field, so you surface for what people actually type, not just your business name.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">13</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Platform-Specific Optimization (Facebook, Instagram, LinkedIn)</span><span class="impact-tag impact-search">Ranking Signal</span></div>
+            <p class="ledger-why">Each platform's internal search behaves differently. Generic copy pasted across all three underperforms in every one of them.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">14</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Story Highlight Organization</span><span class="impact-tag impact-conv">Conversion</span></div>
+            <p class="ledger-why">Turns a scrollable feed into a directory a new visitor can navigate in seconds instead of scrolling for two minutes looking for proof you're legitimate.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">15</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Trust-Building Pass (Reviews &amp; Social Proof Placement)</span><span class="impact-tag impact-trust">Trust Signal</span></div>
+            <p class="ledger-why">Positions proof exactly where objections happen, so doubt gets answered before it turns into someone leaving the page.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">16</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Business Category Optimization</span><span class="impact-tag impact-local">Local Search</span></div>
+            <p class="ledger-why">The specific category selected in a platform's backend determines which searches you're even eligible for. No amount of good content overrides the wrong category.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">17</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Professional Brand Messaging Pass</span><span class="impact-tag impact-trust">Trust Signal</span></div>
+            <p class="ledger-why">A consistent, confident message layered across every platform so the brand reads as established rather than assembled overnight.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">18</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Digital Credibility Checklist</span><span class="impact-tag impact-doc">Documentation</span></div>
+            <p class="ledger-why">A running checklist of every credibility signal now in place, so you know exactly what's been handled and what to maintain.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-foot">
+        <a href="https://buy.stripe.com/REPLACE_WITH_TIER2_LINK" class="btn btn-primary">Get the Growth System — $250</a>
+        <span class="fine">Delivered in 7–10 business days</span>
+      </div>
+    </div>
+
+    <div class="divider">and for the full picture</div>
+
+    <!-- TIER 3 -->
+    <div class="tier tier-plum" data-reveal>
+      <div class="tier-head">
+        <div>
+          <p class="tier-name">Package Three</p>
+          <h3>The Full Transformation</h3>
+        </div>
+        <div class="tier-price">
+          <span class="amt">$500</span>
+          <span class="label">one-time</span>
+        </div>
+      </div>
+      <p class="tier-sub">Everything above, plus the strategic layer: where the traffic lands, who you're actually losing searches to, and confirmation a month later that it's all still working.</p>
+      <div class="includes-note"><b>Includes everything in The Foundation Audit and The Growth System</b> — all eighteen fixes above, plus the following.</div>
+
+      <div class="ledger">
+        <div class="ledger-item">
+          <span class="ledger-num">19</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Full-Platform Optimization, Every Channel You Operate On</span><span class="impact-tag impact-search">Ranking Signal</span></div>
+            <p class="ledger-why">Coverage extends past the core three platforms to everywhere you actually show up, so there's no weak link left unaddressed.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">20</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Website Homepage Audit</span><span class="impact-tag impact-conv">Conversion</span></div>
+            <p class="ledger-why">The page every optimized profile ultimately sends people to. If it undersells what the profiles now promise, everything upstream is wasted traffic.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">21</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Google Maps Deep Optimization</span><span class="impact-tag impact-local">Local Search</span></div>
+            <p class="ledger-why">Beyond setup: photos, service area, and posting cadence, the ongoing signals that keep you actively ranked instead of just present.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">22</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Online Reputation Strategy</span><span class="impact-tag impact-trust">Trust Signal</span></div>
+            <p class="ledger-why">A system for managing what shows up when someone searches your name plus the word "reviews," before a competitor's story becomes yours.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">23</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Competitor Analysis</span><span class="impact-tag impact-search">Strategy</span></div>
+            <p class="ledger-why">A direct comparison against the two or three businesses you're actually losing searches to, with the specific gaps named, not a generic industry overview.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">24</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Conversion Optimization Recommendations</span><span class="impact-tag impact-conv">Conversion</span></div>
+            <p class="ledger-why">Closes the loop on what happens after someone lands. Visibility without conversion just builds an audience, not a business.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">25</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Personalized Strategy Consultation</span><span class="impact-tag impact-doc">Strategy</span></div>
+            <p class="ledger-why">A live session to walk through every finding and answer questions directly, not just a document left in your inbox.</p>
+          </div>
+        </div>
+        <div class="ledger-item">
+          <span class="ledger-num">26</span>
+          <div>
+            <div class="ledger-body-row"><span class="ledger-name">Priority Support &amp; 30-Day Follow-Up</span><span class="impact-tag impact-doc">Documentation</span></div>
+            <p class="ledger-why">Confirms everything is still holding a month later, not just live and untouched since delivery day.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-foot">
+        <a href="https://buy.stripe.com/REPLACE_WITH_TIER3_LINK" class="btn btn-primary">Get the Full Transformation — $500</a>
+        <span class="fine">Delivered in 10–14 business days</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The quick-scan version</h2>
+      <p>For anyone who read all of that and just wants the recap before deciding.</p>
+    </div>
+    <div class="compare" data-reveal>
+      <table>
+        <thead>
+          <tr><th>What's included</th><th>Foundation<br>$100</th><th>Growth<br>$250</th><th>Full<br>$500</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Bio, profile &amp; contact cleanup</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Link repair &amp; brand consistency</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Google Business Profile setup</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>AI search &amp; assistant optimization</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Full platform-specific SEO (FB/IG/LI)</td><td class="dash">—</td><td class="check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Website homepage audit</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+          <tr><td>Competitor analysis</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+          <tr><td>Live strategy consultation</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+          <tr><td>30-day follow-up review</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq-item" data-reveal>
+      <h4>Why does the entry package still cost $100?</h4>
+      <p>You're paying for a documented audit and nine specific corrections most business owners never catch on their own, not a template. The return shows up as inquiries you were previously losing without knowing it.</p>
+    </div>
+    <div class="faq-item" data-reveal>
+      <h4>What actually changes with the Growth System's Google and AI work?</h4>
+      <p>Those two additions target the two fastest-growing sources of buying decisions: local map results and AI-generated answers. Most competitors haven't touched either yet, which is exactly why it matters now.</p>
+    </div>
+    <div class="faq-item" data-reveal>
+      <h4>How long does delivery take?</h4>
+      <p>The Foundation Audit typically completes in 3–5 business days. The Growth System takes 7–10 given the added platforms. The Full Transformation runs 10–14 days to include the audit, strategy call, and follow-up window.</p>
+    </div>
+    <div class="faq-item" data-reveal>
+      <h4>Will you need access to my accounts?</h4>
+      <p>Yes, for the platforms being optimized. Access is used only for the agreed scope and can be revoked by you at any time once the work is delivered.</p>
+    </div>
+    <div class="faq-item" data-reveal>
+      <h4>What if I already have some of this in place?</h4>
+      <p>The audit identifies what's already working first, so paid time goes toward genuine gaps instead of redoing what already holds up.</p>
+    </div>
+    <div class="faq-item" data-reveal>
+      <h4>Do you guarantee more sales?</h4>
+      <p>This service optimizes your visibility and credibility layer. It does not guarantee a specific increase in sales, which also depends on your offer, pricing, and market. What it does guarantee is a documented, provable improvement in how you present online.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Your next customer is searching your name right now.</h2>
+    <p>What they find in the next ten seconds decides whether they stay or scroll to a competitor. Pick the package that fits where you are today.</p>
+    <div class="final-tiers">
+      <a href="https://buy.stripe.com/REPLACE_WITH_TIER1_LINK" class="btn">Foundation — $100</a>
+      <a href="https://buy.stripe.com/REPLACE_WITH_TIER2_LINK" class="btn rec">Growth — $250</a>
+      <a href="https://buy.stripe.com/REPLACE_WITH_TIER3_LINK" class="btn">Full Transformation — $500</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© [YOUR NAME] — Digital Presence Audit. All work delivered for review before anything goes live.</p>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('[data-reveal]');
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    },{threshold:0.12});
+    els.forEach(el=>io.observe(el));
+  } else {
+    els.forEach(el=>el.classList.add('is-visible'));
+  }
+</script>
+
+</body>
+</html>
