@@ -131,6 +131,41 @@
   .mock-line.short{width:60%;}
   .mock-line.good{background:#CFE0D8;}
 
+  /* ---------- IG BEFORE/AFTER ---------- */
+  .ig-mock{
+    margin-top:44px;border-radius:10px;padding:36px 24px 30px;
+    background:linear-gradient(160deg,#171A26,#1E2233 55%,#12151F);
+    box-shadow:0 24px 60px -30px rgba(18,21,28,0.5);
+  }
+  .ig-split{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media(max-width:640px){.ig-split{grid-template-columns:1fr;}}
+  .ig-label{
+    font-family:var(--sans);font-weight:800;font-size:clamp(20px,3vw,26px);
+    color:#fff;text-align:center;letter-spacing:0.01em;margin:0 0 14px;
+  }
+  .ig-card{
+    background:#fff;border-radius:14px;padding:16px 16px 14px;
+    box-shadow:0 14px 30px -14px rgba(0,0,0,0.5);
+  }
+  .ig-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .ig-handle{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:var(--ink);}
+  .ig-handle .verified{width:6px;height:6px;border-radius:50%;background:#E1306C;display:inline-block;}
+  .ig-icons{display:flex;gap:10px;color:var(--ink);opacity:0.75;font-size:14px;}
+  .ig-profile-row{display:flex;align-items:center;gap:14px;margin-bottom:10px;}
+  .ig-avatar{
+    width:52px;height:52px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(135deg,var(--amber),var(--teal));
+    border:2px solid #fff;box-shadow:0 0 0 2px #E1306C;
+  }
+  .ig-stats{display:flex;gap:16px;flex:1;}
+  .ig-stat{text-align:center;}
+  .ig-stat .v{font-size:14px;font-weight:700;color:var(--ink);display:block;}
+  .ig-stat .l{font-size:11px;color:var(--muted);}
+  .ig-bio{font-size:12.5px;color:var(--ink-soft);line-height:1.5;}
+  .ig-bio .biz{font-weight:700;display:block;margin-bottom:2px;}
+  .ig-bio .more{color:var(--muted);}
+  .ig-card.after .v{color:var(--teal);}
+
   /* ---------- SECTION SHARED ---------- */
   section{padding:60px 0;scroll-margin-top:70px;}
   #tiers, #problem, #process, #faq{scroll-margin-top:70px;}
@@ -351,22 +386,52 @@
     <div class="proof-stat"><span class="n">100%</span><span class="l">Documented Before/After</span></div>
   </div>
 
-  <div class="search-mock" data-reveal>
-    <div class="search-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span>searching: "[your business name]"</span></div>
-    <div class="search-split">
-      <div class="search-col">
-        <span class="tag tag-before">Before</span>
-        <div class="mock-title"></div>
-        <div class="mock-line"></div>
-        <div class="mock-line short"></div>
-        <div class="mock-line" style="margin-top:14px;width:40%;"></div>
+  <div class="ig-mock" data-reveal>
+    <div class="ig-split">
+      <div>
+        <p class="ig-label">BEFORE</p>
+        <div class="ig-card">
+          <div class="ig-top">
+            <div class="ig-handle">yourbusiness <span class="verified" style="background:var(--paper-line);"></span></div>
+            <div class="ig-icons">＋ ☰</div>
+          </div>
+          <div class="ig-profile-row">
+            <div class="ig-avatar"></div>
+            <div class="ig-stats">
+              <div class="ig-stat"><span class="v">192</span><span class="l">Posts</span></div>
+              <div class="ig-stat"><span class="v">5,999</span><span class="l">Followers</span></div>
+              <div class="ig-stat"><span class="v">2,480</span><span class="l">Following</span></div>
+            </div>
+          </div>
+          <div class="ig-bio">
+            <span class="biz">Your Business Name</span>
+            Welcome to our page<br>
+            We share updates sometimes<span class="more"> … more</span>
+          </div>
+        </div>
       </div>
-      <div class="search-col">
-        <span class="tag tag-after">After</span>
-        <div class="mock-title good"></div>
-        <div class="mock-line good"></div>
-        <div class="mock-line good short"></div>
-        <div class="mock-line good" style="margin-top:14px;width:50%;"></div>
+      <div>
+        <p class="ig-label">AFTER</p>
+        <div class="ig-card after">
+          <div class="ig-top">
+            <div class="ig-handle">yourbusiness <span class="verified"></span></div>
+            <div class="ig-icons">＋ ☰</div>
+          </div>
+          <div class="ig-profile-row">
+            <div class="ig-avatar"></div>
+            <div class="ig-stats">
+              <div class="ig-stat"><span class="v">238</span><span class="l">Posts</span></div>
+              <div class="ig-stat"><span class="v">20K</span><span class="l">Followers</span></div>
+              <div class="ig-stat"><span class="v">1,222</span><span class="l">Following</span></div>
+            </div>
+          </div>
+          <div class="ig-bio">
+            <span class="biz">Your Business Name</span>
+            🔥 Trusted by 500+ happy customers<br>
+            📍 Book a call, link below<span class="more"> … more</span><br>
+            <span style="color:var(--teal);">🔗 yourbusiness.com/book</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
