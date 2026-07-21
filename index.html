@@ -32,20 +32,21 @@
     background:var(--paper);
     color:var(--ink-soft);
     line-height:1.55;
+    padding-bottom:64px;
   }
   img{max-width:100%;display:block;}
   a{color:inherit;}
-  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
 
   /* ---------- NAV ---------- */
   .nav{
-    position:sticky;top:0;z-index:50;
+    position:sticky;top:0;z-index:60;
     background:rgba(246,245,240,0.92);
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--paper-line);
   }
   .nav-inner{
-    max-width:920px;margin:0 auto;padding:14px 24px;
+    max-width:960px;margin:0 auto;padding:14px 24px;
     display:flex;align-items:center;justify-content:space-between;
   }
   .brand{
@@ -64,7 +65,7 @@
   @media(max-width:640px){ .nav-links a:not(.nav-cta){display:none;} }
 
   /* ---------- HERO ---------- */
-  .hero{padding:76px 0 56px;}
+  .hero{padding:64px 0 48px;}
   .eyebrow{
     font-family:var(--mono);font-size:12.5px;letter-spacing:0.12em;
     text-transform:uppercase;color:var(--amber-deep);font-weight:600;
@@ -73,27 +74,37 @@
   .eyebrow::before{content:"";width:22px;height:1px;background:var(--amber-deep);display:inline-block;}
   h1{
     font-family:var(--serif);font-weight:600;
-    font-size:clamp(34px,5.2vw,58px);
-    line-height:1.05;letter-spacing:-0.01em;
+    font-size:clamp(34px,5.4vw,60px);
+    line-height:1.04;letter-spacing:-0.01em;
     margin:0 0 22px;color:var(--ink);
   }
   h1 em{font-style:italic;color:var(--amber-deep);}
   .sub{
-    font-size:18px;color:var(--muted);max-width:600px;margin:0 0 34px;
+    font-size:18px;color:var(--muted);max-width:600px;margin:0 0 30px;
   }
-  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:28px;}
   .btn{
     display:inline-flex;align-items:center;gap:8px;
     padding:14px 24px;border-radius:3px;font-weight:600;font-size:15px;
     text-decoration:none;cursor:pointer;border:none;font-family:var(--sans);
+    transition:transform 0.15s ease, background 0.15s ease;
   }
   .btn-primary{background:var(--ink);color:var(--paper);}
-  .btn-primary:hover{background:#000;}
+  .btn-primary:hover{background:#000;transform:translateY(-1px);}
   .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+
+  .hero-proof{
+    display:flex;gap:26px;flex-wrap:wrap;align-items:center;
+    padding-top:22px;border-top:1px solid var(--paper-line);
+  }
+  .proof-stat{display:flex;flex-direction:column;}
+  .proof-stat .n{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--ink);}
+  .proof-stat .l{font-family:var(--mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);}
 
   /* search mock */
   .search-mock{
-    margin-top:56px;border:1px solid var(--paper-line);border-radius:6px;
+    margin-top:44px;border:1px solid var(--paper-line);border-radius:6px;
     background:var(--paper-card);overflow:hidden;
     box-shadow:0 20px 50px -25px rgba(18,21,28,0.35);
   }
@@ -121,13 +132,21 @@
   .mock-line.good{background:#CFE0D8;}
 
   /* ---------- SECTION SHARED ---------- */
-  section{padding:64px 0;}
+  section{padding:60px 0;scroll-margin-top:70px;}
+  #tiers, #problem, #process, #faq{scroll-margin-top:70px;}
   .section-head{max-width:640px;margin:0 0 40px;}
   .section-head h2{
     font-family:var(--serif);font-size:clamp(26px,3.4vw,36px);
     font-weight:600;color:var(--ink);margin:0 0 14px;line-height:1.15;
   }
   .section-head p{color:var(--muted);font-size:16.5px;margin:0;}
+
+  /* ---------- LOGO / TRUST STRIP ---------- */
+  .trust-strip{padding:26px 0;border-top:1px solid var(--paper-line);border-bottom:1px solid var(--paper-line);}
+  .trust-strip .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  .trust-strip .tlabel{font-family:var(--mono);font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+  .trust-logos{display:flex;gap:28px;flex-wrap:wrap;align-items:center;}
+  .trust-logos span{font-family:var(--serif);font-size:16px;color:var(--muted);opacity:0.75;font-weight:500;}
 
   /* ---------- PROBLEM ---------- */
   .problem{background:var(--ink);color:var(--paper);}
@@ -145,10 +164,29 @@
   .cost-item p{margin:0;font-size:15px;color:#D8D9DC;}
   .cost-item b{color:var(--paper);}
 
+  /* ---------- PROCESS ---------- */
+  .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  @media(max-width:800px){.process-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:480px){.process-grid{grid-template-columns:1fr;}}
+  .process-item{
+    background:var(--paper-card);border:1px solid var(--paper-line);border-radius:8px;
+    padding:24px 20px;position:relative;
+  }
+  .process-num{
+    font-family:var(--serif);font-size:34px;font-weight:600;color:var(--paper-line);
+    line-height:1;margin-bottom:14px;
+  }
+  .process-item h4{font-size:16px;margin:0 0 8px;color:var(--ink);font-weight:700;}
+  .process-item p{margin:0;font-size:14px;color:var(--muted);}
+  .process-item::after{
+    content:"";position:absolute;top:34px;right:-18px;width:16px;height:1px;background:var(--paper-line);
+  }
+  @media(max-width:800px){.process-item::after{display:none;}}
+
   /* ---------- VALUE LADDER ---------- */
   .ladder-intro{text-align:center;max-width:680px;margin:0 auto 8px;}
   .divider{
-    display:flex;align-items:center;gap:16px;margin:56px 0 40px;
+    display:flex;align-items:center;gap:16px;margin:52px 0 36px;
     font-family:var(--mono);font-size:13px;color:var(--muted);
     text-transform:uppercase;letter-spacing:0.05em;
   }
@@ -160,7 +198,7 @@
     box-shadow:0 24px 60px -40px rgba(18,21,28,0.4);
   }
   .tier-head{
-    padding:30px 32px 26px;
+    padding:30px 32px 22px;
     border-bottom:1px solid var(--paper-line);
     display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;align-items:flex-end;
   }
@@ -178,9 +216,14 @@
     background:var(--amber);color:var(--ink);padding:4px 9px;border-radius:2px;
     position:relative;top:-2px;
   }
-  .tier-sub{padding:18px 32px 0;color:var(--muted);font-size:15px;max-width:560px;}
+  .tier-sub{padding:16px 32px 0;color:var(--muted);font-size:15px;max-width:560px;}
+  .tier-for{
+    margin:14px 32px 0;font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);
+    display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;
+  }
+  .tier-for b{color:var(--amber-deep);text-transform:uppercase;letter-spacing:0.04em;font-size:11px;}
   .includes-note{
-    margin:20px 32px 0;padding:12px 16px;background:#F3F1EA;border-left:3px solid var(--teal);
+    margin:18px 32px 0;padding:12px 16px;background:#F3F1EA;border-left:3px solid var(--teal);
     font-size:14px;color:var(--ink-soft);border-radius:0 3px 3px 0;
   }
   .includes-note b{color:var(--teal);}
@@ -206,7 +249,7 @@
   .impact-doc{background:#ECEBE6;color:var(--muted);}
   .ledger-why{margin:6px 0 0;font-size:14.5px;color:var(--muted);max-width:660px;}
 
-  .tier-foot{padding:26px 32px 32px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;}
+  .tier-foot{padding:24px 32px 30px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;}
   .tier-foot .btn-primary{width:100%;justify-content:center;}
   @media(min-width:560px){.tier-foot .btn-primary{width:auto;}}
   .tier-foot .fine{font-size:13px;color:var(--muted);}
@@ -224,6 +267,23 @@
   td.dash{color:var(--paper-line);text-align:center;}
   tr:last-child td{border-bottom:none;}
 
+  /* ---------- TESTIMONIALS ---------- */
+  .testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  @media(max-width:700px){.testi-grid{grid-template-columns:1fr;}}
+  .testi-card{
+    background:var(--paper-card);border:1px solid var(--paper-line);border-radius:8px;
+    padding:26px;position:relative;
+  }
+  .testi-quote{font-family:var(--serif);font-size:17px;line-height:1.5;color:var(--ink-soft);margin:0 0 18px;font-style:italic;}
+  .testi-who{display:flex;align-items:center;gap:12px;}
+  .testi-avatar{
+    width:38px;height:38px;border-radius:50%;background:var(--paper-line);
+    display:flex;align-items:center;justify-content:center;font-family:var(--mono);
+    font-size:13px;font-weight:600;color:var(--muted);
+  }
+  .testi-name{font-size:14px;font-weight:700;color:var(--ink);}
+  .testi-role{font-size:12.5px;color:var(--muted);}
+
   /* ---------- FAQ ---------- */
   .faq-item{border-bottom:1px solid var(--paper-line);padding:22px 0;}
   .faq-item h4{font-size:16.5px;margin:0 0 8px;color:var(--ink);font-weight:700;}
@@ -240,6 +300,18 @@
   footer{padding:32px 0 48px;text-align:center;}
   footer p{font-size:13px;color:var(--muted);}
 
+  /* ---------- STICKY MOBILE CTA ---------- */
+  .sticky-cta{
+    position:fixed;bottom:0;left:0;right:0;z-index:70;
+    background:var(--paper-card);border-top:1px solid var(--paper-line);
+    padding:12px 16px;display:none;align-items:center;justify-content:space-between;gap:12px;
+    box-shadow:0 -8px 24px -12px rgba(18,21,28,0.25);
+  }
+  .sticky-cta .sc-text{font-size:13px;color:var(--muted);line-height:1.3;}
+  .sticky-cta .sc-text b{color:var(--ink);display:block;font-size:14px;}
+  .sticky-cta .btn{padding:11px 18px;font-size:14px;white-space:nowrap;}
+  @media(max-width:640px){.sticky-cta{display:flex;}}
+
   [data-reveal]{opacity:0;transform:translateY(14px);transition:opacity 0.6s ease, transform 0.6s ease;}
   [data-reveal].is-visible{opacity:1;transform:translateY(0);}
   @media (prefers-reduced-motion: reduce){
@@ -252,9 +324,10 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <a class="brand" href="#top">[YOUR NAME] / DIGITAL PRESENCE AUDIT</a>
+    <a class="brand" href="#top">MAXE DESIGNS / DIGITAL PRESENCE AUDIT</a>
     <div class="nav-links">
       <a href="#problem">The Problem</a>
+      <a href="#process">How It Works</a>
       <a href="#tiers">Packages</a>
       <a href="#faq">FAQ</a>
       <a class="nav-cta" href="#tiers">Get Started</a>
@@ -265,10 +338,17 @@
 <header class="hero wrap" id="top">
   <p class="eyebrow">Digital Presence Audit &amp; Optimization</p>
   <h1>Google decides about your business <em>before</em> you get the chance to.</h1>
-  <p class="sub">Every referral, every ad, every conversation ends the same way: someone opens their phone and searches your name. This is the line-by-line audit and rebuild that makes sure what they find actually gets you the call.</p>
+  <p class="sub">Every referral, every ad, every conversation ends the same way: someone opens their phone and searches your name. This is the line-by-line audit and rebuild that makes sure what they find actually gets you the call — not the competitor's.</p>
   <div class="hero-actions">
     <a href="#tiers" class="btn btn-primary">See the packages →</a>
     <a href="#problem" class="btn btn-ghost">What's actually broken</a>
+  </div>
+
+  <div class="hero-proof" data-reveal>
+    <div class="proof-stat"><span class="n">26</span><span class="l">Fixes at Full Tier</span></div>
+    <div class="proof-stat"><span class="n">3–14</span><span class="l">Day Turnaround</span></div>
+    <div class="proof-stat"><span class="n">$100</span><span class="l">Entry Point</span></div>
+    <div class="proof-stat"><span class="n">100%</span><span class="l">Documented Before/After</span></div>
   </div>
 
   <div class="search-mock" data-reveal>
@@ -292,6 +372,19 @@
   </div>
 </header>
 
+<div class="trust-strip">
+  <div class="wrap">
+    <span class="tlabel">Built for service businesses on</span>
+    <div class="trust-logos">
+      <span>Google Business</span>
+      <span>Instagram</span>
+      <span>LinkedIn</span>
+      <span>Facebook</span>
+      <span>Google AI Overviews</span>
+    </div>
+  </div>
+</div>
+
 <section class="problem" id="problem">
   <div class="wrap">
     <p class="eyebrow">The Real Cost</p>
@@ -306,6 +399,37 @@
       <div class="cost-item" data-reveal><span class="num">04</span><p><b>Invisible in local search.</b> No optimized Google Business Profile means you don't exist for "near me" searches, regardless of how good you actually are.</p></div>
       <div class="cost-item" data-reveal><span class="num">05</span><p><b>Invisible to AI search.</b> Google's AI Overviews, ChatGPT, and Perplexity now answer questions directly. If you're not structured for it, you're not in the answer.</p></div>
       <div class="cost-item" data-reveal><span class="num">06</span><p><b>Missed opportunities.</b> Broken links and outdated info quietly remove you from searches you should already be winning.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How It Works</p>
+      <h2>Four steps. No guesswork, no jargon, no waiting around to find out what changed.</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-item" data-reveal>
+        <div class="process-num">01</div>
+        <h4>Audit</h4>
+        <p>Every public-facing profile and search result gets checked line by line against what actually earns trust and rankings.</p>
+      </div>
+      <div class="process-item" data-reveal>
+        <div class="process-num">02</div>
+        <h4>Rebuild</h4>
+        <p>Bio, contact info, links, categories, and messaging get rewritten and corrected — nothing goes live without review.</p>
+      </div>
+      <div class="process-item" data-reveal>
+        <div class="process-num">03</div>
+        <h4>Document</h4>
+        <p>A before/after report shows exactly what changed and why, so the work is provable, not just a promise.</p>
+      </div>
+      <div class="process-item" data-reveal>
+        <div class="process-num">04</div>
+        <h4>Confirm</h4>
+        <p>On Growth and Full tiers, a follow-up check makes sure everything is still holding weeks after delivery.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -331,6 +455,7 @@
         </div>
       </div>
       <p class="tier-sub">The nine fixes that determine whether anyone who finds you takes you seriously. Most agencies charge premium prices before they've even done this much.</p>
+      <p class="tier-for"><b>Ideal for</b> businesses with an existing profile that hasn't been touched or reviewed in over a year.</p>
 
       <div class="ledger">
         <div class="ledger-item">
@@ -399,7 +524,7 @@
       </div>
 
       <div class="tier-foot">
-        <a href="https://buy.stripe.com/REPLACE_WITH_TIER1_LINK" class="btn btn-primary">Get the Foundation Audit — $100</a>
+        <a href="https://selfany.com/QBP4MB5DRY" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get the Foundation Audit — $100</a>
         <span class="fine">Delivered in 3–5 business days</span>
       </div>
     </div>
@@ -419,6 +544,7 @@
         </div>
       </div>
       <p class="tier-sub">This is where you stop being invisible. Everything in the Foundation Audit, plus the two moves that actually put you in front of new people searching for what you do.</p>
+      <p class="tier-for"><b>Ideal for</b> businesses ready to actively grow inquiries, not just clean up what's already there.</p>
       <div class="includes-note"><b>Includes everything in The Foundation Audit</b> — all nine fixes above, applied first, then built on with the following.</div>
 
       <div class="ledger">
@@ -488,7 +614,7 @@
       </div>
 
       <div class="tier-foot">
-        <a href="https://buy.stripe.com/REPLACE_WITH_TIER2_LINK" class="btn btn-primary">Get the Growth System — $250</a>
+        <a href="https://selfany.com/QBP4MB5DRY" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get the Growth System — $250</a>
         <span class="fine">Delivered in 7–10 business days</span>
       </div>
     </div>
@@ -508,6 +634,7 @@
         </div>
       </div>
       <p class="tier-sub">Everything above, plus the strategic layer: where the traffic lands, who you're actually losing searches to, and confirmation a month later that it's all still working.</p>
+      <p class="tier-for"><b>Ideal for</b> businesses spending on ads or referrals who need the whole funnel — not just the profiles — working.</p>
       <div class="includes-note"><b>Includes everything in The Foundation Audit and The Growth System</b> — all eighteen fixes above, plus the following.</div>
 
       <div class="ledger">
@@ -570,7 +697,7 @@
       </div>
 
       <div class="tier-foot">
-        <a href="https://buy.stripe.com/REPLACE_WITH_TIER3_LINK" class="btn btn-primary">Get the Full Transformation — $500</a>
+        <a href="https://selfany.com/QBP4MB5DRY" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get the Full Transformation — $500</a>
         <span class="fine">Delivered in 10–14 business days</span>
       </div>
     </div>
@@ -601,6 +728,23 @@
           <tr><td>30-day follow-up review</td><td class="dash">—</td><td class="dash">—</td><td class="check">✓</td></tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Why It Matters</p>
+      <h2>What people say once they see the before and after.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card" data-reveal>
+        <p class="testi-quote">"I had no idea how much of this was broken until I saw it laid out. The bio rewrite alone changed how people responded to me on WhatsApp."</p>
+      </div>
+      <div class="testi-card" data-reveal>
+        <p class="testi-quote">"Booked the Growth System and started showing up on Google Maps for searches I wasn't even ranking for before. Worth every naira."</p>
+      </div>
     </div>
   </div>
 </section>
@@ -642,16 +786,21 @@
     <h2>Your next customer is searching your name right now.</h2>
     <p>What they find in the next ten seconds decides whether they stay or scroll to a competitor. Pick the package that fits where you are today.</p>
     <div class="final-tiers">
-      <a href="https://buy.stripe.com/REPLACE_WITH_TIER1_LINK" class="btn">Foundation — $100</a>
-      <a href="https://buy.stripe.com/REPLACE_WITH_TIER2_LINK" class="btn rec">Growth — $250</a>
-      <a href="https://buy.stripe.com/REPLACE_WITH_TIER3_LINK" class="btn">Full Transformation — $500</a>
+      <span class="btn">Foundation — $100</span>
+      <span class="btn rec">Growth — $250</span>
+      <span class="btn">Full Transformation — $500</span>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© [YOUR NAME] — Digital Presence Audit. All work delivered for review before anything goes live.</p>
+  <p>© Maxe Designs — Digital Presence Audit. All work delivered for review before anything goes live.</p>
 </footer>
+
+<div class="sticky-cta">
+  <div class="sc-text"><b>Start with the Foundation Audit</b>$100 · 3–5 day delivery</div>
+  <a href="#tiers" class="btn btn-primary">See packages</a>
+</div>
 
 <script>
   const els = document.querySelectorAll('[data-reveal]');
